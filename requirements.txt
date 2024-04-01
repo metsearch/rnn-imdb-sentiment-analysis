@@ -70,6 +70,7 @@ requests==2.31.0
 safetensors==0.4.2
 scikit-learn==1.4.1.post1
 scipy==1.12.0
+seaborn==0.13.2
 sentence-transformers==2.6.0
 six==1.16.0
 sympy==1.12

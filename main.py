@@ -80,8 +80,9 @@ def learn(path2data, path2models, batch_size, epochs, path2metrics):
 
 @router_cmd.command()
 @click.option('--path2data', help='path to dataset', type=click.Path(True), default='data/imdb_test.pkl')
+@click.option('--path2metrics', help='metrics storage', type=str, default='metrics/')
 @click.option('--path2model', help='path to model', type=click.Path(True), default='models/model.h5')
-def inference(path2data, path2model):
+def inference(path2data, path2model, path2metrics):
     logger.debug('Inference...')
     
     maxlen = 80
@@ -89,17 +90,17 @@ def inference(path2data, path2model):
         test_data = pickle.load(fp)
     X_test, y_test = test_data
     X_test = pad_sequences(X_test, maxlen=maxlen)
-    print(decode_review(X_test, 0))
         
     model = keras.models.load_model(path2model)
-    
     predictions = model.predict(X_test)
-    pred_labels = []
+    y_pred = []
     for i in predictions:
         if i >= 0.5:
-            pred_labels.append(1)
+            y_pred.append(1)
         else:
-            pred_labels.append(0)
+            y_pred.append(0)
+    
+    plot_confusion_matrix(path2metrics, y_test, y_pred)
 
 if __name__ == '__main__':
     router_cmd(obj={})
