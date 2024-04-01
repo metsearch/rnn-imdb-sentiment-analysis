@@ -4,9 +4,9 @@ This project utilizes `Keras` and an `LSTM-based Recurrent Neural Network` to an
 
 <p align="center">
   <img src="./metrics/loss.png" width="45%">
-  <img src="./metrics/onfusion_matrix.png" width="45%">
+  <img src="./metrics/confusion_matrix.png" width="45%">
   <h6 align="center">
-    Some prediction examples
+    Losses curve and Confusion matrix
   </h6>  
 </p>
 
